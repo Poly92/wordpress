@@ -1,0 +1,65 @@
+*A new taxonomy created under current theme..
+In our case, twentyeleven is the theme we are working with..
+
+Taxonomy created: edition
+HOW???
+
+Add these lines in your functions.php file(wp-content/themes/twentyeleven/functions.php)
+
+/** Add custom taxonomy Edition*/
+
+add_action('init','create_edition_taxonomy',0);
+
+function create_edition_taxonomy(){
+	
+	$edition_labels = array(
+		     'name' => _x( 'Editions', 'taxonomy general name' ),
+		    'singular_name' => _x('Edition', 'taxonomy singular name'),
+    		'menu_name' => 'Edition',
+		    'all_items' => __( 'All Editions' ),
+		    'edit_item' => __( 'Edit Edition' ),
+			'view_item' => __( 'View Edition' ),
+			'update_item' => __( 'Update Edition' ),
+			'add_new_item' => __( 'Add New Edition' ),
+			'new_item_name' => __( 'New Edition Name' ),
+			'parent_item' => __( 'Parent Edition' ),
+			'parent_item_colon' => __( 'Parent Edition:' ),
+			'search_items' => __( 'Search Editions' ),
+			'popular_items' => null,
+			'separate_items_with_commas' => null,
+			'add_or_remove_items' => __( 'Add or remove edition' ),
+			'choose_from_most_used' => __( 'Choose from the most used editions' )	
+	);
+
+/*Registering edition taxonomy*/
+
+	register_taxonomy( 'edition', 'post', array( 
+		'hierarchical' => false, 
+		'labels' => $edition_labels, 
+		'query_var' => true, 
+		'rewrite' => array('slug' => 'edition') ) );
+}
+
+*
+
+*Added a plugin  taxonomy picker.*
+
+*A login button and register button can be added on the wordpress page by calling simple wordpress functions.. What we have done is called those functions while loading the header i.e in the file header.php
+
+lines to be added are:
+
+<!--//////////////////Section for login button/////////////////////////////////////////-->
+
+
+<div id="login" align="right">
+<?php wp_loginout();?>
+<?php wp_register();?>
+</div>
+
+
+<!--///////////////////////////////////////////////////////////-->
+
+we can change these links to small buttons also
+
+*
+
