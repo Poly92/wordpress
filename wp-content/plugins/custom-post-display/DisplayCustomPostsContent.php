@@ -63,7 +63,7 @@ class CustomPostsContent extends WP_Widget {
 					echo "</a></h3>";
 					if ( $show_image ){
 						if ( has_post_thumbnail() ) : 
-						the_post_thumbnail(array( 100, 100 ),array('class' => 'alignleft'));
+						the_post_thumbnail(array( 50, 50 ),array('class' => 'alignleft'));
 						endif;
 					}
 					echo $cont;
