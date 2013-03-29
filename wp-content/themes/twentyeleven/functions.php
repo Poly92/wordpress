@@ -673,4 +673,23 @@ function create_edition_taxonomy(){
 }
 add_action( 'init', 'my_custom_post_bulletin' );
 
-/*****************Custom post type creation code ends here****************8*/
+/*****************Custom post type creation code ends here******************/
+
+/*****************Restricting registraion to only webmail id****************/
+
+add_action('registration_errors', 'sizeable_restrict_domains', 10, 3);
+function sizeable_restrict_domains( $errors, $login, $email ) {
+	$whitelist = array('daiict.ac.in');
+	if ( is_email($email) ) {
+		$parts = explode('@', $email);
+		$domain = $parts[count($parts)-1];
+		if ( !in_array(strtolower($domain), $whitelist) ) {
+			$errors->add('email_domain', __('ERROR: You may only 
+
+register with your daiict email address.'));
+		}
+	}
+	return $errors;
+}
+
+/******************XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX****************/
